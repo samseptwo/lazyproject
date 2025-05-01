@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Post Your Ad - OLX</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Optional: You can add custom styles here if needed */
+      .image-upload-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); /* 4 columns grid */
+        gap: 0.5rem; /* Tailwind's gap-2 */
+        margin-top: 0.5rem; /* Tailwind's mt-2 */
+      }
+      .image-upload-slot {
+        width: 100%;
+        height: 4rem; /* Tailwind's h-16, but in rem */
+        border: 2px dashed #d1d5db; /* Tailwind's border-dashed and border-gray-300 */
+        border-radius: 0.5rem; /* Tailwind's rounded-md */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: #6b7280; /* Tailwind's text-gray-500 */
+        transition: border-color 0.3s ease;
+      }
+      .image-upload-slot:hover {
+        border-color: #3b82f6; /* Tailwind's hover:border-blue-500 */
+        color: #3b82f6;
+      }
+      .image-upload-slot.filled {
+        border-color: #cbd5e0;
+        background-size: cover;
+        background-position: center;
+      }
+
+      .image-upload-slot svg {
+        width: 1.5rem; /* Tailwind's w-6, but in rem */
+        height: 1.5rem; /* Tailwind's h-6, but in rem */
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 font-inter py-8">
+    <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-md p-6 md:p-8">
+      <h1 class="text-2xl font-semibold text-gray-800 mb-6 text-center">
+        POST YOUR AD
+      </h1>
+
+      <div class="mb-6">
+        <h2 class="text-lg font-semibold text-gray-700 mb-2">
+          Selected Category
+        </h2>
+        <div class="flex items-center gap-4">
+          <span
+            class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700"
+            >Cars</span
+          >
+          <a
+            href="lazy.html"
+            class="text-blue-500 hover:text-blue-700 text-sm font-medium"
+            >Change</a
+          >
+        </div>
+      </div>
+
+      <form class="space-y-6" id="post-ad-form">
+        <div class="border-t border-gray-200 pt-6">
+          <h2 class="text-xl font-semibold text-gray-700 mb-4">
+            Include some details
+          </h2>
+        </div>
+
+        <div>
+          <label for="brand" class="block text-gray-700 text-sm font-bold mb-2"
+            >Brand <span class="text-red-500">*</span></label
+          >
+          <select
+            id="brand"
+            required
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          >
+            <option value="">Select Brand</option>
+            <option value="toyota">Toyota</option>
+            <option value="honda">Honda</option>
+            <option value="ford">Ford</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="year" class="block text-gray-700 text-sm font-bold mb-2"
+            >Year <span class="text-red-500">*</span></label
+          >
+          <input
+            type="number"
+            id="year"
+            placeholder="Year"
+            required
+            min="1990"
+            max="{new"
+            Date().getFullYear()}
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+        </div>
+
+        <div>
+          <label class="block text-gray-700 text-sm font-bold mb-2"
+            >Fuel Type <span class="text-red-500">*</span></label
+          >
+          <div class="flex flex-wrap gap-2">
+            <div class="flex items-center">
+              <input
+                type="radio"
+                id="fuel-cng"
+                name="fuel"
+                value="cng"
+                class="mr-1"
+                required
+              />
+              <label for="fuel-cng" class="text-gray-700 text-sm"
+                >CNG & Hybrids</label
+              >
+            </div>
+            <div class="flex items-center">
+              <input
+                type="radio"
+                id="fuel-diesel"
+                name="fuel"
+                value="diesel"
+                class="mr-1"
+                required
+              />
+              <label for="fuel-diesel" class="text-gray-700 text-sm"
+                >Diesel</label
+              >
+            </div>
+            <div class="flex items-center">
+              <input
+                type="radio"
+                id="fuel-electric"
+                name="fuel"
+                value="electric"
+                class="mr-1"
+                required
+              />
+              <label for="fuel-electric" class="text-gray-700 text-sm"
+                >Electric</label
+              >
+            </div>
+            <div class="flex items-center">
+              <input
+                type="radio"
+                id="fuel-lpg"
+                name="fuel"
+                value="lpg"
+                class="mr-1"
+                required
+              />
+              <label for="fuel-lpg" class="text-gray-700 text-sm">LPG</label>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-gray-700 text-sm font-bold mb-2"
+            >Transmission <span class="text-red-500">*</span></label
+          >
+          <div class="flex gap-4">
+            <div class="flex items-center">
+              <input
+                type="radio"
+                id="transmission-automatic"
+                name="transmission"
+                value="automatic"
+                required
+                class="mr-1"
+              />
+              <label for="transmission-automatic" class="text-gray-700 text-sm"
+                >Automatic</label
+              >
+            </div>
+            <div class="flex items-center">
+              <input
+                type="radio"
+                id="transmission-manual"
+                name="transmission"
+                value="manual"
+                required
+                class="mr-1"
+              />
+              <label for="transmission-manual" class="text-gray-700 text-sm"
+                >Manual</label
+              >
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <label
+            for="km-driven"
+            class="block text-gray-700 text-sm font-bold mb-2"
+            >KM Driven <span class="text-red-500">*</span></label
+          >
+          <input
+            type="number"
+            id="km-driven"
+            placeholder="KM Driven"
+            required
+            min="0"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+        </div>
+
+        <div>
+          <label for="owners" class="block text-gray-700 text-sm font-bold mb-2"
+            >No. of Owners <span class="text-red-500">*</span></label
+          >
+          <select
+            id="owners"
+            required
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          >
+            <option value="">Select</option>
+            <option value="1st">1st</option>
+            <option value="2nd">2nd</option>
+            <option value="3rd">3rd</option>
+            <option value="4th+">4th+</option>
+          </select>
+        </div>
+
+        <div>
+          <label
+            for="ad-title"
+            class="block text-gray-700 text-sm font-bold mb-2"
+            >Ad title <span class="text-red-500">*</span></label
+          >
+          <input
+            type="text"
+            id="ad-title"
+            placeholder="Enter your Ad title"
+            required
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+        </div>
+
+        <div>
+          <label
+            for="description"
+            class="block text-gray-700 text-sm font-bold mb-2"
+            >Description <span class="text-red-500">*</span></label
+          >
+          <textarea
+            id="description"
+            placeholder="Enter a detailed description"
+            required
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-32 resize-y"
+          ></textarea>
+          <p
+            id="description-char-count"
+            class="text-gray-500 text-sm mt-1 text-right"
+          >
+            0/4000
+          </p>
+        </div>
+
+        <div>
+          <label for="price" class="block text-gray-700 text-sm font-bold mb-2"
+            >Set a Price <span class="text-red-500">*</span></label
+          >
+          <input
+            type="number"
+            id="price"
+            placeholder="Price"
+            required
+            min="0"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+        </div>
+        <div class="max-w-4xl mx-auto bg-white p-6 rounded shadow">
+          <h2 class="text-xl font-semibold mb-4">UPLOAD UP TO 20 PHOTOS</h2>
+
+          <div class="grid grid-cols-5 gap-4">
+            <!-- Repeat for 20 slots -->
+            <label
+              class="w-full h-24 border-2 border-dashed border-gray-300 flex items-center justify-center cursor-pointer hover:border-blue-400 transition"
+            >
+              <input type="file" class="hidden" />
+              <div class="text-center text-gray-500">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6 mx-auto mb-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 4v16m8-8H4"
+                  />
+                </svg>
+                <span class="text-sm">Add Photo</span>
+              </div>
+            </label>
+
+            <div
+              class="w-full h-24 border-2 border-dashed border-gray-300 flex items-center justify-center text-gray-400"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 4v16m8-8H4"
+                />
+              </svg>
+            </div>
+
+            <!-- Repeat above <div> up to 20 total items -->
+          </div>
+          <div class="grid grid-cols-5 gap-4">
+            <!-- Repeat for 20 slots -->
+            <label
+              class="w-full h-24 border-2 border-dashed border-gray-300 flex items-center justify-center cursor-pointer hover:border-blue-400 transition"
+            >
+              <input type="file" class="hidden" />
+              <div class="text-center text-gray-500">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6 mx-auto mb-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 4v16m8-8H4"
+                  />
+                </svg>
+                <span class="text-sm">Add Photo</span>
+              </div>
+            </label>
+
+            <div
+              class="w-full h-24 border-2 border-dashed border-gray-300 flex items-center justify-center text-gray-400"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 4v16m8-8H4"
+                />
+              </svg>
+            </div>
+          </div>
+
+          <p class="text-red-500 text-sm mt-2">This field is mandatory</p>
+
+          <div class="mt-6">
+            <h3 class="font-semibold mb-2">CONFIRM YOUR LOCATION</h3>
+            <label class="block mb-1 text-sm">State *</label>
+            <select class="w-full border border-gray-300 rounded px-3 py-2">
+              <option value="">Select a state</option>
+              <option value="State1">State 1</option>
+              <option value="State2">State 2</option>
+            </select>
+          </div>
+        </div>
+        <button
+          type="submit"
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full focus:outline-none focus:shadow-outline"
+        >
+          Post
+        </button>
+      </form>
+    </div>
+
+    <script>
+      const descriptionInput = document.getElementById("description");
+      const descriptionCharCount = document.getElementById(
+        "description-char-count"
+      );
+      const imageInput = document.getElementById("image-input");
+      const imageUploadGrid = document.getElementById("image-upload-grid");
+      const imageSlots = document.querySelectorAll(".image-upload-slot");
+
+      const MAX_DESCRIPTION_LENGTH = 4000;
+
+      descriptionInput.addEventListener("input", function () {
+        const textLength = this.value.length;
+        descriptionCharCount.textContent = `${textLength}/${MAX_DESCRIPTION_LENGTH}`;
+        descriptionCharCount.style.color =
+          textLength > MAX_DESCRIPTION_LENGTH ? "#ff0000" : "#6b7280";
+      });
+
+      imageInput.addEventListener("change", function () {
+        const files = this.files;
+        if (files.length > 20) {
+          alert("You can only upload a maximum of 20 images.");
+          this.value = ""; // Clear the input
+          return;
+        }
+
+        // Clear the existing images
+        imageSlots.forEach((slot) => {
+          slot.style.backgroundImage = "";
+          slot.classList.remove("filled");
+          slot.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 6v.75m0 3v.75m0 3v.75M3 16.817v-1.163m18 1.163v-1.163m0 0a18 18 0 00-18 0m18 0a18 18 0 01-18 0" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.817l1.38-1.38m16.62-1.38l-1.38 1.38" />
+                                  </svg>`;
+        });
+
+        for (let i = 0; i < files.length; i++) {
+          const file = files[i];
+          const reader = new FileReader();
+
+          reader.onload = function (e) {
+            if (imageSlots[i]) {
+              //check if the slot exists
+              imageSlots[i].style.backgroundImage = `url(${e.target.result})`;
+              imageSlots[i].classList.add("filled");
+              imageSlots[i].innerHTML = ""; // Clear the plus icon
+            }
+          };
+
+          reader.readAsDataURL(file);
+        }
+      });
+
+      document
+        .getElementById("post-ad-form")
+        .addEventListener("submit", function (event) {
+          // Basic form validation (you should add more robust validation)
+          const requiredFields = [
+            "brand",
+            "year",
+            "fuel",
+            "transmission",
+            "km-driven",
+            "owners",
+            "ad-title",
+            "description",
+            "price",
+          ];
+          for (const fieldId of requiredFields) {
+            const field = document.getElementById(fieldId);
+            if (!field.value.trim()) {
+              alert(
+                `Please fill in the ${field.labels[0].textContent.replace(
+                  /\s?<span.*<\/span>$/,
+                  ""
+                )} field.`
+              ); //remove html from label
+              event.preventDefault(); // Prevent form submission
+              return;
+            }
+          }
+
+          const imageInputElem = document.getElementById("image-input");
+          if (!imageInputElem.files || imageInputElem.files.length === 0) {
+            alert("Please upload at least one image.");
+            event.preventDefault();
+            return;
+          }
+
+          if (descriptionInput.value.length > MAX_DESCRIPTION_LENGTH) {
+            alert(
+              `Description must be ${MAX_DESCRIPTION_LENGTH} characters or less.`
+            );
+            event.preventDefault();
+            return;
+          }
+
+          // If all validations pass, you can proceed with form submission (e.g., using fetch or AJAX)
+          // console.log('Form submitted successfully!');
+          // event.preventDefault(); //remove this to submit
+        });
+    </script>
+  </body>
+</html>
